@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Mix Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo" id="logo">🥴</div>
+            <h1>Emoji Mix Generator</h1>
+            <p class="description">Gabungkan dua emoji menjadi satu gambar campuran yang unik!</p>
+        </header>
+
+        <div class="emoji-selector-container">
+            <div class="emoji-selector">
+                <div class="selector-header">
+                    <div class="selector-title">Emoji 1</div>
+                    <div class="selector-controls">
+                        <button class="control-btn" id="shuffleEmoji1">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button class="control-btn" id="clearEmoji1">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="emoji-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchEmoji1" placeholder="Cari emoji atau kode...">
+                </div>
+
+                <div class="emoji-categories" id="categories1">
+                    <!-- Kategori akan diisi oleh JavaScript -->
+                </div>
+
+                <div class="emoji-list" id="emojiList1">
+                    <!-- Emoji akan diisi oleh JavaScript -->
+                </div>
+
+                <div class="selected-emojis">
+                    <span id="selectedEmoji1">Pilih emoji pertama</span>
+                    <button class="browse-btn" id="browseEmoji1" title="Lihat hasil mix" style="display: none;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="emoji-selector">
+                <div class="selector-header">
+                    <div class="selector-title">Emoji 2</div>
+                    <div class="selector-controls">
+                        <button class="control-btn" id="shuffleEmoji2">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button class="control-btn" id="clearEmoji2">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="emoji-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchEmoji2" placeholder="Cari emoji atau kode...">
+                </div>
+
+                <div class="emoji-categories" id="categories2">
+                    <!-- Kategori akan diisi oleh JavaScript -->
+                </div>
+
+                <div class="emoji-list" id="emojiList2">
+                    <!-- Emoji akan diisi oleh JavaScript -->
+                </div>
+
+                <div class="selected-emojis">
+                    <span id="selectedEmoji2">Pilih emoji kedua</span>
+                    <button class="browse-btn" id="browseEmoji2" title="Lihat hasil mix" style="display: none;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="generateBtn">
+                <i class="fas fa-cog"></i> Generate Mix
+            </button>
+        </div>
+
+        <div class="result-container">
+            <div class="emoji-preview" id="emojiPreview"></div>
+            
+            <div class="result-image-container">
+                <canvas class="result-canvas" id="resultCanvas" width="300" height="300"></canvas>
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Sedang memproses...</p>
+                </div>
+            </div>
+            
+            <div class="error" id="error"></div>
+            <div class="success" id="success"></div>
+
+            <div class="action-buttons-result">
+                <button class="btn btn-secondary" id="downloadBtn" disabled>
+                    <i class="fas fa-download"></i> Unduh
+                </button>
+                <button class="btn btn-primary" id="copyBtn" disabled>
+                    <i class="fas fa-copy"></i> Salin Gambar
+                </button>
+            </div>
+        </div>
+
+        <button class="settings-btn" id="settingsBtn">
+            <i class="fas fa-cog"></i>
+        </button>
+
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3><i class="fas fa-cog"></i> Pengaturan</h3>
+                <button class="control-btn" id="closeSettings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="settings-content">
+                <div class="setting-group">
+                    <div class="toggle-label">
+                        <label for="themeToggle">Tema Gelap</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <div class="toggle-label">
+                        <label for="soundToggle">Efek Suara</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <div class="toggle-label">
+                        <label for="vibrationToggle">Getaran</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="vibrationToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <div class="toggle-label">
+                        <label for="animationToggle">Emoji Animasi</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="animationToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label for="primaryColorPicker">Warna Primer</label>
+                    <div class="color-picker">
+                        <div class="color-preview" id="primaryColorPreview" style="background-color: #6e8efb"></div>
+                        <input type="color" id="primaryColorPicker" value="#6e8efb">
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label for="secondaryColorPicker">Warna Sekunder</label>
+                    <div class="color-picker">
+                        <div class="color-preview" id="secondaryColorPreview" style="background-color: #a777e3"></div>
+                        <input type="color" id="secondaryColorPicker" value="#a777e3">
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label for="backgroundColorPicker">Warna Latar</label>
+                    <div class="color-picker">
+                        <div class="color-preview" id="backgroundColorPreview" style="background-color: #f8f9fa"></div>
+                        <input type="color" id="backgroundColorPicker" value="#f8f9fa">
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label for="fontSelect">Jenis Font</label>
+                    <select id="fontSelect">
+                        <option value="Segoe UI, Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value='Courier New, Courier, monospace'>Courier New</option>
+                        <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Dibuat dengan ❤️ menggunakan HTML, CSS, dan JavaScript | API oleh Google Tenor</p>
+        </footer>
+    </div>
+
+    <!-- Sound effects -->
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+    <audio id="successSound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
+    <audio id="errorSound" src="https://assets.mixkit.co/sfx/preview/mixkit-warning-alarm-buzzer-2851.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
