@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Mix Generator</title>
+    <meta name="description" content="Gabungkan dua emoji menjadi satu gambar campuran yang unik dengan MergeMoji!">
+    <meta name="theme-color" content="#6e8efb">
+    <title>MergeMoji - Generator Mix Emoji</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo" id="logo">🥴</div>
-            <h1>Emoji Mix Generator</h1>
+            <h1>MergeMoji</h1>
             <p class="description">Gabungkan dua emoji menjadi satu gambar campuran yang unik!</p>
         </header>
 
@@ -20,10 +24,10 @@
                 <div class="selector-header">
                     <div class="selector-title">Emoji 1</div>
                     <div class="selector-controls">
-                        <button class="control-btn" id="shuffleEmoji1">
+                        <button class="control-btn" id="shuffleEmoji1" aria-label="Acak emoji pertama">
                             <i class="fas fa-random"></i>
                         </button>
-                        <button class="control-btn" id="clearEmoji1">
+                        <button class="control-btn" id="clearEmoji1" aria-label="Hapus emoji pertama">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -31,20 +35,20 @@
                 
                 <div class="emoji-search">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchEmoji1" placeholder="Cari emoji atau kode...">
+                    <input type="text" id="searchEmoji1" placeholder="Cari emoji atau kode..." aria-label="Cari emoji pertama">
                 </div>
 
-                <div class="emoji-categories" id="categories1">
+                <div class="emoji-categories" id="categories1" aria-label="Kategori emoji pertama">
                     <!-- Kategori akan diisi oleh JavaScript -->
                 </div>
 
-                <div class="emoji-list" id="emojiList1">
+                <div class="emoji-list" id="emojiList1" aria-label="Daftar emoji pertama">
                     <!-- Emoji akan diisi oleh JavaScript -->
                 </div>
 
                 <div class="selected-emojis">
                     <span id="selectedEmoji1">Pilih emoji pertama</span>
-                    <button class="browse-btn" id="browseEmoji1" title="Lihat hasil mix" style="display: none;">
+                    <button class="browse-btn" id="browseEmoji1" title="Lihat hasil mix" style="display: none;" aria-label="Lihat hasil mix untuk emoji pertama">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -54,10 +58,10 @@
                 <div class="selector-header">
                     <div class="selector-title">Emoji 2</div>
                     <div class="selector-controls">
-                        <button class="control-btn" id="shuffleEmoji2">
+                        <button class="control-btn" id="shuffleEmoji2" aria-label="Acak emoji kedua">
                             <i class="fas fa-random"></i>
                         </button>
-                        <button class="control-btn" id="clearEmoji2">
+                        <button class="control-btn" id="clearEmoji2" aria-label="Hapus emoji kedua">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -65,20 +69,20 @@
                 
                 <div class="emoji-search">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchEmoji2" placeholder="Cari emoji atau kode...">
+                    <input type="text" id="searchEmoji2" placeholder="Cari emoji atau kode..." aria-label="Cari emoji kedua">
                 </div>
 
-                <div class="emoji-categories" id="categories2">
+                <div class="emoji-categories" id="categories2" aria-label="Kategori emoji kedua">
                     <!-- Kategori akan diisi oleh JavaScript -->
                 </div>
 
-                <div class="emoji-list" id="emojiList2">
+                <div class="emoji-list" id="emojiList2" aria-label="Daftar emoji kedua">
                     <!-- Emoji akan diisi oleh JavaScript -->
                 </div>
 
                 <div class="selected-emojis">
                     <span id="selectedEmoji2">Pilih emoji kedua</span>
-                    <button class="browse-btn" id="browseEmoji2" title="Lihat hasil mix" style="display: none;">
+                    <button class="browse-btn" id="browseEmoji2" title="Lihat hasil mix" style="display: none;" aria-label="Lihat hasil mix untuk emoji kedua">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -112,17 +116,20 @@
                 <button class="btn btn-primary" id="copyBtn" disabled>
                     <i class="fas fa-copy"></i> Salin Gambar
                 </button>
+                <button class="btn btn-secondary" id="shareBtn" disabled>
+                    <i class="fas fa-share-alt"></i> Bagikan
+                </button>
             </div>
         </div>
 
-        <button class="settings-btn" id="settingsBtn">
+        <button class="settings-btn" id="settingsBtn" aria-label="Pengaturan">
             <i class="fas fa-cog"></i>
         </button>
 
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-header">
                 <h3><i class="fas fa-cog"></i> Pengaturan</h3>
-                <button class="control-btn" id="closeSettings">
+                <button class="control-btn" id="closeSettings" aria-label="Tutup pengaturan">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -172,7 +179,7 @@
                     <label for="primaryColorPicker">Warna Primer</label>
                     <div class="color-picker">
                         <div class="color-preview" id="primaryColorPreview" style="background-color: #6e8efb"></div>
-                        <input type="color" id="primaryColorPicker" value="#6e8efb">
+                        <input type="color" id="primaryColorPicker" value="#6e8efb" aria-label="Pilih warna primer">
                     </div>
                 </div>
 
@@ -180,7 +187,7 @@
                     <label for="secondaryColorPicker">Warna Sekunder</label>
                     <div class="color-picker">
                         <div class="color-preview" id="secondaryColorPreview" style="background-color: #a777e3"></div>
-                        <input type="color" id="secondaryColorPicker" value="#a777e3">
+                        <input type="color" id="secondaryColorPicker" value="#a777e3" aria-label="Pilih warna sekunder">
                     </div>
                 </div>
 
@@ -188,18 +195,19 @@
                     <label for="backgroundColorPicker">Warna Latar</label>
                     <div class="color-picker">
                         <div class="color-preview" id="backgroundColorPreview" style="background-color: #f8f9fa"></div>
-                        <input type="color" id="backgroundColorPicker" value="#f8f9fa">
+                        <input type="color" id="backgroundColorPicker" value="#f8f9fa" aria-label="Pilih warna latar">
                     </div>
                 </div>
 
                 <div class="setting-group">
                     <label for="fontSelect">Jenis Font</label>
                     <select id="fontSelect">
-                        <option value="Segoe UI, Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
+                        <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI</option>
                         <option value="Arial, sans-serif">Arial</option>
                         <option value="Georgia, serif">Georgia</option>
-                        <option value='Courier New, Courier, monospace'>Courier New</option>
+                        <option value="'Courier New', Courier, monospace">Courier New</option>
                         <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
                     </select>
                 </div>
             </div>
@@ -207,6 +215,7 @@
 
         <footer>
             <p>Dibuat dengan ❤️ menggunakan HTML, CSS, dan JavaScript | API oleh Google Tenor</p>
+            <p class="version">MergeMoji v1.0</p>
         </footer>
     </div>
 
