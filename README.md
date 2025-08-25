@@ -1,0 +1,2 @@
+# MergeMoji
+emojimix
